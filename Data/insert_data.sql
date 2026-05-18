@@ -100,6 +100,21 @@ INSERT INTO Loans VALUES(2012, 504080, 'Education Loan', 3400405.41, 14.03, 120,
 INSERT INTO Loans VALUES(2013, 658893, 'Gold Loan', 748930.95, 9.06, 84, 'Closed');
 INSERT INTO Loans VALUES(2014, 349285, 'Home Loan', 2836656.30, 14.24, 180, 'Defaulted');
 INSERT INTO Loans VALUES(2015, 789565, 'Personal Loan', 2399000.54, 9.87, 120, 'Active');
+INSERT INTO Loans VALUES
+(2016, 86424, 'Car Loan', 500000.00, 9.5, 36, 'Active'),
+(2017, 86424, 'Personal Loan', 300000.00, 11.0, 24, 'Active'),
+(2018, 86424, 'Home Loan', 1500000.00, 8.5, 120, 'Active'),
+(2019, 176740, 'Car Loan', 450000.00, 10.2, 36, 'Active'),
+(2020, 176740, 'Education Loan', 600000.00, 7.5, 48, 'Active'),
+(2021, 176740, 'Personal Loan', 250000.00, 12.0, 24, 'Active'),
+(2022, 593386, 'Car Loan', 700000.00, 9.8, 48, 'Active'),
+(2023, 593386, 'Gold Loan', 400000.00, 10.5, 36, 'Active'),
+(2024, 593386, 'Education Loan', 350000.00, 8.0, 60, 'Active'),
+(2025, 789565, 'Car Loan', 550000.00, 9.2, 36, 'Active'),
+(2026, 789565, 'Home Loan', 2000000.00, 8.3, 180, 'Active'),
+(2027, 789565, 'Gold Loan', 800000.00, 10.8, 60, 'Active'),
+(2028, 349285, 'Car Loan', 600000.00, 9.5, 48, 'Active'),
+(2029, 349285, 'Personal Loan', 200000.00, 11.5, 24, 'Active');
 
 SELECT * FROM Loans;
 

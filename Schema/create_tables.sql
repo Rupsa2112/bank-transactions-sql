@@ -11,7 +11,7 @@ CREATE TABLE Customer(
  created_at timestamp
 );
 
-SELECT * FROM Customer;  
+SELECT customer_id FROM Customer;  
 
 CREATE TABLE Branch(
 branch_id int PRIMARY KEY,
@@ -57,7 +57,7 @@ CREATE TABLE Loans(
  FOREIGN KEY (customer_id) REFERENCES Customer (customer_id)
 );
 
-SELECT * FROM Loans;
+SELECT * FROM Loans ORDER BY customer_id;
 
 CREATE TABLE Transactions(
  txn_id int PRIMARY KEY,
@@ -68,6 +68,20 @@ CREATE TABLE Transactions(
  description varchar(20),
  FOREIGN KEY (account_id) REFERENCES Accounts (account_id)
 );
+
+ALTER TABLE Transactions
+ADD COLUMN txn_type varchar(50);
+
+UPDATE Transactions SET txn_type = 'credit' 
+WHERE txn_id IN (3001, 3002, 3016, 3022, 3028, 3033, 3040, 3045, 
+                 3051, 3056, 3060, 3066, 3072, 3079, 3083, 3088,
+                 3094, 3007, 3009, 3010, 3011, 3012, 3036, 3048,
+                 3063, 3075);
+                 
+
+SET SQL_SAFE_UPDATES = 0;
+UPDATE Transactions SET txn_type = 'debit' WHERE txn_type IS NULL;
+SET SQL_SAFE_UPDATES = 1;               
 
 SELECT * FROM Transactions;
 

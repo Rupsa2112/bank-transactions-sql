@@ -55,35 +55,31 @@ SELECT account_id, customer_id, account_type, status, balance
 FROM Accounts
 WHERE account_type = "Savings" AND status = "Active";
 
-/* the most recent transaction for each account — show account ID, transaction type, amount and time */
-SELECT account_id, amount, description AS transaction_type, txn_time
-FROM Transactions
-WHERE txn_time IN (SELECT MAX(txn_time)
-					FROM Transactions
-                    GROUP BY account_id);
+/* Find top 5 customers by total transaction value — show customer name and total amount */
+
+
+
 
 /* all accounts whose balance dropped below ₹180000 after any transaction — show account ID, transaction amount and balance after */
 SELECT account_id, txn_id, amount, balance_after
 FROM Transactions
 WHERE balance_after < 180000;
 
-/* customers who have a loan but no credit card */
-SELECT customer_id, loan_id
-FROM Loans
-WHERE customer_id NOT IN ( SELECT a.customer_id
-						   FROM Accounts a
-                           INNER JOIN Cards c
-                           ON a.account_id = c.account_id
-                           WHERE c.card_type LIKE '%Credit%'
-);
 
-/* all loans where the total EMI paid so far is more than 10% of the principal amount */
-SELECT l.loan_id, l.customer_id, SUM(e.amount) AS amount_paid
-FROM Loans l
-INNER JOIN EMI_Payments e
-ON l.loan_id = e.loan_id
-GROUP BY l.loan_id, l.customer_id, l.principal_amount
-HAVING SUM(e.amount) > 0.1 * l.principal_amount;
+/*Find average transaction amount per account type — show account type and average amount */
+SELECT a.account_type, AVG(t.amount) AS average_transaction_amount
+FROM Accounts a
+INNER JOIN Transactions t
+ON a.account_id = t.account_id
+GROUP BY a.account_type;
+
+
+/* Find customers with more than 2 active loans — show customer id and loan count */
+SELECT customer_id, Count(loan_id)
+FROM Loans
+WHERE status = "Active"
+GROUP BY customer_id
+HAVING Count(loan_id) > 2;
 
 
 
