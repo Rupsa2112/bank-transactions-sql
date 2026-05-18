@@ -55,11 +55,6 @@ SELECT account_id, customer_id, account_type, status, balance
 FROM Accounts
 WHERE account_type = "Savings" AND status = "Active";
 
-/* Find top 5 customers by total transaction value — show customer name and total amount */
-
-
-
-
 /* all accounts whose balance dropped below ₹180000 after any transaction — show account ID, transaction amount and balance after */
 SELECT account_id, txn_id, amount, balance_after
 FROM Transactions
