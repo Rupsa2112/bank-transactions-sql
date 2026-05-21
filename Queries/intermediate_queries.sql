@@ -101,7 +101,10 @@ SELECT account_id, amount,
 		LOWER(description) AS description, 
         DAYNAME(txn_time) AS day
 FROM Transactions
-WHERE description LIKE "%Payment%";        
+WHERE description LIKE "%Payment%";  
+
+
+   
 
 
 
