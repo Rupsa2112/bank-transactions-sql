@@ -34,26 +34,39 @@ branch-wise performance reports.
 ### 🟢 Basic Queries
 - List all customers with account details and balance
 - Find accounts with balance above ₹1,00,000
+- Show latest transactions
 - List all active loans with customer details
 - Find all defaulted EMI payments and days overdue
 - Find cards expiring within next 6 months
-- Find customers with loan but no credit card
+- Find number of employees in each branch
+- List all transactions where the amount is above the overall average transaction amount
+- List all customers having savings account and are active
+- List all accounts whose balance dropped below ₹180000 after any transaction
+- Find average transaction amount per account type
+- Find customers with more than 2 active loans
 
 ### 🟡 Intermediate Queries
 - Total credits vs debits per account using CASE WHEN
-- Customers with more than 2 active loans
+- All loans where the total EMI paid so far is more than 10% of the principal amount
+- Customers who have a loan but no credit card
+- The most recent transaction for each account
 - Top 5 customers by total transaction value
-- Dormant accounts with no transactions in 90 days
-- Monthly transaction totals using date functions
+- Dormant accounts with no transactions in last 90 days
+- Show all customers whose name starts with 'A' or 'R'
 - Mask card numbers showing only last 4 digits
+- Total transaction amount per month
+- Customers whose account is older than 1 year
+- All transactions where description contains the word 'Payment'
 
 ### 🔴 Advanced Queries
-- Running balance per account using SUM() OVER()
-- Rank customers by transaction value using DENSE_RANK()
+- Running total of transaction amount for each account using SUM() OVER()
+- Rank customers by their total transaction value using DENSE_RANK()
 - Compare each transaction to previous using LAG()
+- Rank transactions within each account by amount using DENSE_RANK()
 - Month-over-month transaction growth using CTEs
 - Detect suspicious transactions (amount > 3x average)
 - EMI default rate per loan type
+- Customers whose total debited amount exceeds total credited amount using CTEs
 
 ---
 
@@ -71,9 +84,9 @@ MySQL | Python | Pandas | Matplotlib | Seaborn | Jupyter Notebook
 ---
 
 ## ⚙️ Advanced SQL Features
-- **Views** — 5 reusable views for operations, fraud and loan teams
-- **Stored Procedures** — ACID-compliant money transfer procedure
-- **Triggers** — Auto-flag suspicious transactions on insert
+- **Views** — 5 reusable views for account, loan status, transactions, fraud risk accounts and card expiry alert
+- **Stored Procedures** — complete customer profile and transactions between two accounts atomically with ACID compliance 
+- **Triggers** — Auto-flag suspicious transactions on insert 
 - **ACID Transactions** — Atomic money transfer with rollback on failure
 
 ---
@@ -88,8 +101,6 @@ Connected MySQL to Python for fraud-focused visualizations:
 - Flagged vs normal transactions per account
 - EMI default rate by loan type
 - Credit vs debit per account
-
----
 
 ---
 
@@ -135,8 +146,8 @@ bank-transactions-sql/
 │   └── insert_data.sql          → Sample data for all tables
 │
 ├── 03_Queries/
-│   ├── basic_queries.sql        → 13 basic queries
-│   ├── intermediate_queries.sql → 10 intermediate queries
+│   ├── basic_queries.sql        → 12 basic queries
+│   ├── intermediate_queries.sql → 11 intermediate queries
 │   └── advanced_queries.sql     → 8 window function + CTE queries
 │
 ├── 04_Advanced/
