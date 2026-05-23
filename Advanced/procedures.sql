@@ -24,8 +24,6 @@ DELIMITER ;
 CALL get_customer_info(869320);     
 
 
-
-
 /* Transfer money between two accounts atomically with ACID compliance */ 
 DELIMITER $$
 CREATE PROCEDURE transfer_money(from_acc_id INT, to_acc_id INT, transfer_amt DECIMAL(10,3))
@@ -89,7 +87,10 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL transfer_money(1015, 1006, 500);               
+CALL transfer_money(1015, 1006, 500);             
+
+
+
                 
 
 

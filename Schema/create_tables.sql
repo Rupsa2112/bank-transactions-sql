@@ -136,7 +136,7 @@ CREATE TABLE EMI_Payments(
  FOREIGN KEY (loan_id) REFERENCES Loans (loan_id)
 );
 
-SELECT * FROM EMI_Payments;
+SELECT * FROM EMI_Payments WHERE due_date > CURDATE();
 
 
 
