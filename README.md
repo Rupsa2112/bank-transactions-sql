@@ -1,4 +1,4 @@
-# 🏦 Bank Transactions System Using SQL 
+# 🏦 End-to-End Banking Database System | MySQL + Python 
 
 ## 📋 Problem Statement
 A mid-sized Indian bank needs to monitor suspicious transactions, 
