@@ -1,4 +1,4 @@
-# 🏦 Bank Transaction Risk Monitoring System
+# 🏦 Bank Transactions System Using SQL 
 
 ## 📋 Problem Statement
 A mid-sized Indian bank needs to monitor suspicious transactions, 
