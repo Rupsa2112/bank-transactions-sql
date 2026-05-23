@@ -21,7 +21,7 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL get_customer_info(869320);     
+
 
 
 /* Transfer money between two accounts atomically with ACID compliance */ 
@@ -87,7 +87,7 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL transfer_money(1015, 1006, 500);             
+        
 
 
 
