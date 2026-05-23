@@ -2,6 +2,7 @@ CREATE DATABASE IF NOT EXISTS BANK;
 
 USE BANK;
 
+
 CREATE TABLE Customer(
  customer_id int PRIMARY KEY,
  name varchar(50),
@@ -13,6 +14,8 @@ CREATE TABLE Customer(
 
 SELECT customer_id FROM Customer;  
 
+
+
 CREATE TABLE Branch(
 branch_id int PRIMARY KEY,
 name varchar(50),
@@ -21,6 +24,8 @@ ifsc_code varchar(50)
 );
 
 SELECT * FROM Branch; 
+
+
 
 CREATE TABLE Employee(
 emp_id int PRIMARY KEY,
@@ -31,8 +36,9 @@ salary int,
 FOREIGN KEY (branch_id) REFERENCES Branch (branch_id) 
 );
 
-
 SELECT * FROM Employee;
+
+
 
 CREATE TABLE Accounts(
  account_id int PRIMARY KEY,
@@ -46,6 +52,8 @@ CREATE TABLE Accounts(
 
 SELECT * FROM Accounts;
 
+
+
 CREATE TABLE Loans(
  loan_id int PRIMARY KEY,
  customer_id int,
@@ -57,7 +65,9 @@ CREATE TABLE Loans(
  FOREIGN KEY (customer_id) REFERENCES Customer (customer_id)
 );
 
-SELECT * FROM Loans ORDER BY customer_id;
+SELECT * FROM Loans;
+
+
 
 CREATE TABLE Transactions(
  txn_id int PRIMARY KEY,
@@ -77,13 +87,29 @@ WHERE txn_id IN (3001, 3002, 3016, 3022, 3028, 3033, 3040, 3045,
                  3051, 3056, 3060, 3066, 3072, 3079, 3083, 3088,
                  3094, 3007, 3009, 3010, 3011, 3012, 3036, 3048,
                  3063, 3075);
-                 
-
+               
 SET SQL_SAFE_UPDATES = 0;
+
 UPDATE Transactions SET txn_type = 'debit' WHERE txn_type IS NULL;
-SET SQL_SAFE_UPDATES = 1;               
+
+
+UPDATE Accounts a
+INNER JOIN (
+    SELECT account_id, balance_after
+    FROM Transactions t1
+    WHERE txn_time = (
+        SELECT MAX(txn_time) 
+        FROM Transactions t2
+        WHERE t2.account_id = t1.account_id
+    )
+) AS latest
+ON a.account_id = latest.account_id
+SET a.balance = latest.balance_after;
+
+SET SQL_SAFE_UPDATES = 1;
 
 SELECT * FROM Transactions;
+
 
 
 CREATE TABLE Cards(
@@ -98,6 +124,8 @@ CREATE TABLE Cards(
 
 SELECT * FROM Cards;
 
+
+
 CREATE TABLE EMI_Payments(
  emi_id int PRIMARY KEY,
  loan_id int,
@@ -110,6 +138,8 @@ CREATE TABLE EMI_Payments(
 
 SELECT * FROM EMI_Payments;
 
+
+
 CREATE TABLE Fraud_Alerts(
  alert_id int PRIMARY KEY,
  account_id int,
@@ -121,6 +151,6 @@ CREATE TABLE Fraud_Alerts(
  FOREIGN KEY (txn_id) REFERENCES Transactions (txn_id)
 );
 
-SELECT * FROM Fraud_Alerts;
+SELECT * FROM Fraud_Alerts where account_id = 1001;
 
 SHOW TABLES;

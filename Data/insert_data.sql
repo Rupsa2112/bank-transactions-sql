@@ -223,6 +223,26 @@ INSERT INTO Transactions VALUES
 
 SELECT * FROM Transactions;
 
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE Transactions SET txn_time = '2024-12-01 10:29:57' WHERE txn_id = 3001;
+UPDATE Transactions SET txn_time = '2024-12-02 23:00:20' WHERE txn_id = 3002;
+UPDATE Transactions SET txn_time = '2024-12-03 12:17:25' WHERE txn_id = 3003;
+UPDATE Transactions SET txn_time = '2024-12-04 22:26:15' WHERE txn_id = 3004;
+UPDATE Transactions SET txn_time = '2024-12-05 06:08:44' WHERE txn_id = 3005;
+UPDATE Transactions SET txn_time = '2024-10-18 08:11:04' WHERE txn_id = 3006; -- already ok
+UPDATE Transactions SET txn_time = '2024-12-07 14:09:56' WHERE txn_id = 3007;
+UPDATE Transactions SET txn_time = '2024-09-19 22:03:47' WHERE txn_id = 3008; -- already ok
+UPDATE Transactions SET txn_time = '2024-12-09 22:59:55' WHERE txn_id = 3009;
+UPDATE Transactions SET txn_time = '2024-12-10 13:47:44' WHERE txn_id = 3010; -- already ok
+UPDATE Transactions SET txn_time = '2024-12-11 08:56:27' WHERE txn_id = 3011;
+UPDATE Transactions SET txn_time = '2024-12-12 15:56:11' WHERE txn_id = 3012; -- already ok
+UPDATE Transactions SET txn_time = '2024-12-13 01:37:47' WHERE txn_id = 3013; -- already ok
+UPDATE Transactions SET txn_time = '2024-12-14 23:27:31' WHERE txn_id = 3014;
+UPDATE Transactions SET txn_time = '2024-12-15 11:03:53' WHERE txn_id = 3015; -- already ok
+
+SET SQL_SAFE_UPDATES = 1;
+
 
 INSERT INTO Cards VALUES(4001, 1001, 'Debit Card', 12345678, '2028-06-30', 50000.00);
 INSERT INTO Cards VALUES(4002, 1002, 'Credit Card', 23456789, '2029-11-30', 150000.00);
@@ -313,6 +333,6 @@ INSERT INTO Fraud_Alerts VALUES
 (6011, 1009, 3009, 'Late Night Loan EMI', '2025-06-14 23:05:00', FALSE),
 (6012, 1014, 3014, 'High Bill Payment at Night', '2026-02-13 23:35:00', FALSE);
 
-SELECT * FROM Fraud_Alerts ORDER BY account_id;
+SELECT * FROM Fraud_Alerts;
 
 
