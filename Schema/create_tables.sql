@@ -151,6 +151,6 @@ CREATE TABLE Fraud_Alerts(
  FOREIGN KEY (txn_id) REFERENCES Transactions (txn_id)
 );
 
-SELECT * FROM Fraud_Alerts where account_id = 1001;
+SELECT * FROM Fraud_Alerts;
 
 SHOW TABLES;
